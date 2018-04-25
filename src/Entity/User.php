@@ -15,16 +15,76 @@ class User
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     *
+     */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     *
+     */
     private $firstName;
+
+    /**
+     * @ORM\Column(type="date", length=120, nullable=true)
+     *
+     */
     private $birthDate;
+
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     *
+     */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     *
+     */
     private $password;
+
+    /**
+     * @ORM\Column(type="boolean", length=120, nullable=true)
+     *
+     */
     private $isActive;
+
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     *
+     */
     private $roles;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     */
     private $lastConnexion;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     */
     private $created_at;
-    private $driverLicence;
+
+    /**
+     * User constructor.
+     * @param $isActive
+     */
+    public function __construct($isActive)
+    {
+        $this->isActive = true;
+    }
+
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
     /**
      * @return mixed
@@ -170,25 +230,8 @@ class User
         $this->created_at = $created_at;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDriverLicence()
-    {
-        return $this->driverLicence;
-    }
-
-    /**
-     * @param mixed $driverLicence
-     */
-    public function setDriverLicence($driverLicence): void
-    {
-        $this->driverLicence = $driverLicence;
-    }
 
 
-    public function getId()
-    {
-        return $this->id;
-    }
+
+
 }
