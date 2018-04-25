@@ -1,4 +1,5 @@
-
+/.idea/
+/.idead/*
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
