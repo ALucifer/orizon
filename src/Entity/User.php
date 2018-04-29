@@ -73,6 +73,16 @@ class User implements AdvancedUserInterface
     private $created_at;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $tokenExpire;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -248,6 +258,39 @@ class User implements AdvancedUserInterface
     {
         $this->created_at = $created_at;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token): void
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenExpire()
+    {
+        return $this->tokenExpire;
+    }
+
+    /**
+     * @param mixed $tokenExpire
+     */
+    public function setTokenExpire($tokenExpire): void
+    {
+        $this->tokenExpire = $tokenExpire;
+    }
+    
 
     /**
      * Returns the salt that was originally used to encode the password.
