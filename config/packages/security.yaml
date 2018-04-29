@@ -25,6 +25,10 @@ security:
                       check_path: /login
       role_hierarchy:
               ROLE_UTILISATEUR: ROLE_USER
+              ROLE_JOUEUR: ROLE_USER
+              ROLE_STRUCTURE: ROLE_USER
+              ROLE_GAME_MASTER: ROLE_USER
+              ROLE_ADMINISTRATEUR: ROLE_USER
             # activate different ways to authenticate
 
             # http_basic: true
