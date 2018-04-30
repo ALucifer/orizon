@@ -88,6 +88,7 @@ class User implements AdvancedUserInterface
     public function __construct()
     {
         $this->isActive = true;
+        $this->created_at = new \DateTime();
     }
 
 

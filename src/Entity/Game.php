@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -31,10 +32,21 @@ class Game
     private $slug;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StructureGame", mappedBy="game", cascade={"remove"})
+     */
+    private $structures;
+
+    /**
      * Game constructor.
      */
     public function __construct()
     {
+        $this->structures = new ArrayCollection();
     }
 
     public function getId()
@@ -72,5 +84,42 @@ class Game
     public function setSlug($slug): void
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStructures()
+    {
+        return $this->structures;
+    }
+
+    /**
+     * @param mixed $structures
+     */
+    public function setStructures($structures): void
+    {
+        $this->structures = $structures;
+    }
+
+    public function addStructure(Structure $structure)
+    {
+        $this->structures[] = $structure;
     }
 }
