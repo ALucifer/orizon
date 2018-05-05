@@ -252,14 +252,6 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * @param mixed $created_at
-     */
-    public function setCreatedAt($created_at): void
-    {
-        $this->created_at = $created_at;
-    }
-
-    /**
      * @return mixed
      */
     public function getToken()
@@ -290,7 +282,16 @@ class User implements AdvancedUserInterface
     {
         $this->tokenExpire = $tokenExpire;
     }
-    
+
+
+
+    /**
+     * @param mixed $created_at
+     */
+    public function setCreatedAt($created_at): void
+    {
+        $this->created_at = $created_at;
+    }
 
     /**
      * Returns the salt that was originally used to encode the password.
