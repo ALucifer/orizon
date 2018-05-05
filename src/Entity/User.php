@@ -88,7 +88,6 @@ class User implements AdvancedUserInterface
     public function __construct()
     {
         $this->isActive = true;
-        $this->created_at = new \DateTime();
     }
 
 
@@ -253,14 +252,6 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * @param mixed $created_at
-     */
-    public function setCreatedAt($created_at): void
-    {
-        $this->created_at = $created_at;
-    }
-
-    /**
      * @return mixed
      */
     public function getToken()
@@ -291,7 +282,15 @@ class User implements AdvancedUserInterface
     {
         $this->tokenExpire = $tokenExpire;
     }
-    
+
+
+    /**
+     * @param mixed $created_at
+     */
+    public function setCreatedAt($created_at): void
+    {
+        $this->created_at = $created_at;
+    }
 
     /**
      * Returns the salt that was originally used to encode the password.
@@ -314,6 +313,7 @@ class User implements AdvancedUserInterface
     {
         return $this->email;
     }
+
     /**
      * Removes sensitive data from the user.
      *
