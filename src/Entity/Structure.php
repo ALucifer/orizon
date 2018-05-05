@@ -34,10 +34,22 @@ class Structure
     private $president;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StructureGame", mappedBy="structure", cascade={"remove"})
+     */
+    private $games;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isBlocked;
+
+    /**
      * Structure constructor.
      */
     public function __construct()
     {
+        $this->isBlocked = false;
     }
 
     public function getId()
@@ -91,5 +103,37 @@ class Structure
     public function setPresident($president): void
     {
         $this->president = $president;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param mixed $games
+     */
+    public function setGames($games): void
+    {
+        $this->games = $games;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisBlocked()
+    {
+        return $this->isBlocked;
+    }
+
+    /**
+     * @param mixed $isBlocked
+     */
+    public function setIsBlocked($isBlocked): void
+    {
+        $this->isBlocked = $isBlocked;
     }
 }

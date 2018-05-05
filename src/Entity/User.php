@@ -284,7 +284,6 @@ class User implements AdvancedUserInterface
     }
 
 
-
     /**
      * @param mixed $created_at
      */
@@ -314,6 +313,7 @@ class User implements AdvancedUserInterface
     {
         return $this->email;
     }
+
     /**
      * Removes sensitive data from the user.
      *
