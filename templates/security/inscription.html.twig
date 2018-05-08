@@ -1,38 +1,44 @@
 {% extends 'base.html.twig' %}
+{% block title %} Bienvenue sur Orizon!
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/inscription.css') }}"/>
+{% endblock %}
 
-
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/particles.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/inscription.js') }}"></script>
+    <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('callback - particles.js loaded...');
+        });</script>
+{% endblock %}
 
 {% block body %}
+    <div id="particles-js"></div>
+
     <div class="signupSection">
         <div class="info">
-            <h2>Mission to Deep Space</h2>
-            <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
-            <p>The Future Is Here</p>
+            <h2>Une mission pour être le meilleur </h2>
+            <p>Ton Futur Esportif est là</p>
+            <img src="{{ asset('css/orizon_logotest.png') }}" alt="">
+
         </div>
-        <form action="#" method="POST" class="signupForm" name="signupform">
-            {{ form_start() }}
-            <h2>Sign Up</h2>
+            {{ form_start(form, {'METHOD': 'POST'}, {'label_attr': {'class:':'signupForm'}}) }}
+            <h2>S'inscrire</h2>
             <ul class="noBullet">
                 <li>
-                    <label for="username"></label>
-                    {{ form_row(form.email) }}
-                    <input type="text" class="inputFields" id="username" name="username" placeholder="Username" value="" oninput="return userNameValidation(this.value)" required/>
+                    <label for="email"></label>
+                    {{ form_row(form.email, {'label_attr': {'id': 'email', 'name':'email'}},  oninput="return userNameValidation(this.value)") }}
                 </li>
                 <li>
                     <label for="password"></label>
-                    {{ form_row(form.Password) }}
-                    <input type="password" class="inputFields" id="password" name="password" placeholder="Password" value="" oninput="return passwordValidation(this.value)" required/>
-                </li>
-                <li>
-                    <label for="email"></label>
-                    <input type="email" class="inputFields" id="email" name="email" placeholder="Email" value="" required/>
+                    {{ form_row(form.Password, {'label_attr': {'class':'inputFields', 'id': 'password', 'name':'password'}},  oninput="return passwordValidation(this.value)") }}
                 </li>
                 <li id="center-btn">
-                    <input type="submit" id="join-btn" name="join" alt="Join" value="Join">
+                    {{ form_row(form.submit) }}
                 </li>
             </ul>
-        </form>
+            {{ form_end(form) }}
     </div>
 
-    </div>
 {% endblock %}
