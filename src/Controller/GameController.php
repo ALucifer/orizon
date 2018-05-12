@@ -32,6 +32,7 @@ class GameController extends Controller
      */
     public function add(Request $request)
     {
+
         $game = new Game();
 
         $form = $this->createForm(GameType::class, $game);
