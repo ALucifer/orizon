@@ -95,12 +95,18 @@ class User implements AdvancedUserInterface
     private $location;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserGame", mappedBy="user")
+     */
+    private $games;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->isActive = true;
         $this->languages = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
 
@@ -437,4 +443,6 @@ class User implements AdvancedUserInterface
     {
         return $this->isActive;
     }
+
+
 }
