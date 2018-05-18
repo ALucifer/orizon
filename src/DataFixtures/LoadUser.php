@@ -30,6 +30,20 @@ class LoadUser extends Fixture
         $admin->addRole('ROLE_ADMINISTRATEUR');
         $admin->setPassword('admin');
 
+        $letme = new User();
+        $letme->setName('letme');
+        $letme->setFirstName('top1');
+        $letme->setEmail('letmetop1@orizon.com');
+        $letme->addRole('ROLE_ADMINISTRATEUR');
+        $letme->setPassword('admin');
+
+        $lucifer = new User();
+        $lucifer->setName('a');
+        $lucifer->setFirstName('lucifer');
+        $lucifer->setEmail('alucifer@orizon.com');
+        $lucifer->addRole('ROLE_ADMINISTRATEUR');
+        $lucifer->setPassword('admin');
+
         $utilisateur = new User();
         $utilisateur->setName('utilisateur');
         $utilisateur->setFirstName('utilisateur');
@@ -55,6 +69,8 @@ class LoadUser extends Fixture
         $manager->persist($utilisateur);
         $manager->persist($structure);
         $manager->persist($game_master);
+        $manager->persist($letme);
+        $manager->persist($lucifer);
         $manager->flush();
     }
 }
