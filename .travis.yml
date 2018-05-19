@@ -3,22 +3,8 @@ language: php
 services:
   - mysql
 
-cache:
-  directories:
-    - $HOME/.composer/cache/files
-
 php:
-  - '7.1'
   - '7.2'
-  
-before_install:
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD(null) where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo service mysql restart
 
 install:
   - composer install
-  - php bin/console doctrine:database:create
-  - php bin/console doctrine:schema:create
-  - php bin/console doctrine:fixtures:load
-  
-
