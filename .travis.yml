@@ -1,5 +1,8 @@
 language: php
 
+services:
+  - mysql
+
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -9,7 +12,9 @@ php:
   - '7.2'
   
 before_install:
-  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD(null) where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade
+  - sudo service mysql restart
 
 install:
   - composer install
