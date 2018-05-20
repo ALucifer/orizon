@@ -2,17 +2,22 @@
 
 namespace App\Controller;
 
+use App\Controller\Utils\Structure\StructureHandler;
 use App\Entity\Structure;
-use App\Form\StructureType;
 use App\Repository\StructureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class StructureController
+ * @package App\Controller
+ * @Route("/structure")
+ */
 class StructureController extends Controller
 {
     /**
-     * @Route("/structure", name="structure_index")
+     * @Route("/", name="structure_index")
      *
      * @param StructureRepository $structureRepository
      * @return \Symfony\Component\HttpFoundation\Response
@@ -25,42 +30,53 @@ class StructureController extends Controller
     }
 
     /**
-     * @Route("/structure/show/{id}", name="structure_show")
+     * @Route("/show/{id}", name="structure_show")
      *
      * @param Structure $structure
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function show(Structure $structure)
     {
-        return $this->render('structure/show.html.twig',[
+        return $this->render("structure/show.html.twig",[
            'structure' => $structure
         ]);
     }
 
     /**
-     * @Route("/structure/add", name="structure_add")
+     * @Route("/add", name="structure_add")
      *
      * @param Request $request
+     * @param StructureHandler $handler
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function add(Request $request)
+    public function add(Request $request, StructureHandler $handler)
     {
         $structure = new Structure();
-        $form = $this->createForm(StructureType::class, $structure);
+        $form = $handler->createForm($structure);
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-           $structure = $form->getData();
-           $em = $this->getDoctrine()->getManager();
-           $em->persist($structure);
-           $em->flush();
-           $this->addFlash('success', 'Votre structure à bien été ajouté.');
-           return $this->redirectToRoute('structure_index');
+        if ($handler->process($form, $request)) {
+            $handler->success($structure);
+            $this->addFlash('success', 'Votre structure à bien été ajouté.');
+            return $this->redirectToRoute('structure_index');
         }
 
         return $this->render('structure/add.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/edit/{id}", name="structure_edit")
+     *
+     * @param Structure $structure
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Structure $structure)
+    {
+        return $this->render('structure/edit.html.twig', [
+            'structure' => $structure
         ]);
     }
 
