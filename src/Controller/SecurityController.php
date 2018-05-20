@@ -24,15 +24,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class SecurityController extends Controller
 {
-
     /**
      * @Route("/inscription", name="inscription")
+     *
      * @param Request $request
-     * @param EntityManagerInterface $entityManager
      * @param UserPasswordEncoderInterface $passwordEncoder
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function createUser(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(InscriptionType::class, $user);
@@ -60,11 +60,12 @@ class SecurityController extends Controller
 
     /**
      * @Route("/login", name="login")
-     * @param Request $request
+     *
      * @param AuthenticationUtils $authenticationUtils
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function login(Request $request, AuthenticationUtils $authenticationUtils)
+    public function login(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -76,6 +77,10 @@ class SecurityController extends Controller
 
     /**
      * @Route("/forgotPassword", name="forgot_Password")
+     *
+     * @param Request $request
+     * @param TokenGeneratorInterface $tokenGenerator
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function forgotPassword(Request $request, TokenGeneratorInterface $tokenGenerator)
@@ -114,10 +119,12 @@ class SecurityController extends Controller
      * Seul les utilisateurs non authentifié peuvent avoir accès a leur reset.
      *
      * @Route("/reset-password/{token}", name="reset_password", requirements={"token"}, methods={"GET|POST"})
+     *
      * @Entity("user", expr="repository.findOneByToken(token)")
+     *
      * @param User $user
      * @param Request $request
-     * @param $token
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     // Si il n'y a pas d'utilisateur c'est qu'il n'a pas fait de demande de mot de passe

@@ -38,11 +38,15 @@ class Structure
      */
     private $games;
 
-
     /**
      * @ORM\Column(type="boolean")
      */
     private $isBlocked;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $state;
 
     /**
      * Structure constructor.
@@ -124,7 +128,7 @@ class Structure
     /**
      * @return mixed
      */
-    public function getisBlocked()
+    public function getIsBlocked()
     {
         return $this->isBlocked;
     }
@@ -135,5 +139,21 @@ class Structure
     public function setIsBlocked($isBlocked): void
     {
         $this->isBlocked = $isBlocked;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     */
+    public function setState($state): void
+    {
+        $this->state = $state;
     }
 }
