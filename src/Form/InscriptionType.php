@@ -27,7 +27,7 @@ class InscriptionType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les password doivent être les mêmes.',
                 'required'=>true,
-                'options' => array('attr' =>['placeholder'=>'Votre Password', 'class'=>'inputFields'] ),
+                'options' => array('attr' =>['placeholder'=>'Votre Password', 'class'=>'inputFields'], 'invalid_message' => 'Vos mots de passes ne sont pas les mêmes, réessayer.' ),
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Répéter votre Password'),
             ))    ->add('submit', SubmitType::class, ['label'=>'Validez']);
