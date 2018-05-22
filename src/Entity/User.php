@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -44,6 +45,7 @@ class User implements AdvancedUserInterface
 
     /**
      * @ORM\Column(type="string", length=120, nullable=true)
+     * **@Assert\Regex(pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", match=false, message="Votre password ne respecte pas le format demandé ")**
      *
      */
     private $password;
