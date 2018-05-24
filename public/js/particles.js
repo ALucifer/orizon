@@ -1,11 +1,3 @@
-/* -----------------------------------------------
-  /* Author : Vincent Garreau  - vincentgarreau.com
-  /* MIT license: https://opensource.org/licenses/MIT
-  /* Demo / Generator : vincentgarreau.com/particles.js
-  /* GitHub : github.com/VincentGarreau/particles.js
-  /* How to use? : Check the GitHub README
-  /* v2.0.0
-  /* ----------------------------------------------- */
 
 var pJS = function(tag_id, params){
 
@@ -20,10 +12,10 @@ var pJS = function(tag_id, params){
         },
         particles: {
             number: {
-                value: 400,
+                value: 100,
                 density: {
                     enable: true,
-                    value_area: 800
+                    value_area: 200
                 }
             },
             color: {
@@ -36,7 +28,7 @@ var pJS = function(tag_id, params){
                     color: '#ff0000'
                 },
                 polygon: {
-                    nb_sides: 5
+                    nb_sides: 3
                 },
                 image: {
                     src: '',
@@ -46,7 +38,7 @@ var pJS = function(tag_id, params){
             },
             opacity: {
                 value: 1,
-                random: false,
+                random: true,
                 anim: {
                     enable: false,
                     speed: 2,
@@ -108,7 +100,7 @@ var pJS = function(tag_id, params){
                     }
                 },
                 bubble:{
-                    distance: 200,
+                    distance: 100,
                     size: 80,
                     duration: 0.4
                 },
@@ -1543,14 +1535,14 @@ window.particlesJS.load = function(tag_id, path_config_json, callback){
 particlesJS("particles-js", {
     "particles": {
         "number": {
-            "value": 160,
+            "value": 100,
             "density": {
                 "enable": true,
                 "value_area": 800
             }
         },
         "color": {
-            "value": "#ffffff"
+            "value": "#6a2523"
         },
         "shape": {
             "type": "circle",
@@ -1590,7 +1582,7 @@ particlesJS("particles-js", {
         "line_linked": {
             "enable": true,
             "distance": 100.01416867389551,
-            "color": "#d40a0a",
+            "color": "#d2af0d",
             "opacity": 0.3630136445780753,
             "width": 1
         },
@@ -1630,14 +1622,14 @@ particlesJS("particles-js", {
                 }
             },
             "bubble": {
-                "distance": 250,
+                "distance": 100,
                 "size": 0,
                 "duration": 2,
                 "opacity": 0,
                 "speed": 3
             },
             "repulse": {
-                "distance": 400,
+                "distance": 50,
                 "duration": 0.4
             },
             "push": {
