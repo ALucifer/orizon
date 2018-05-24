@@ -42,11 +42,29 @@ class Game
     private $structures;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GamePoste", mappedBy="game")
+     */
+    private $postes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GameRanking", mappedBy="game")
+     */
+    private $rankings;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserGame", mappedBy="game")
+     */
+    private $users;
+
+    /**
      * Game constructor.
      */
     public function __construct()
     {
         $this->structures = new ArrayCollection();
+        $this->postes = new ArrayCollection();
+        $this->rankings= new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId()
@@ -121,5 +139,69 @@ class Game
     public function addStructure(Structure $structure)
     {
         $this->structures[] = $structure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostes()
+    {
+        return $this->postes;
+    }
+
+    /**
+     * @param mixed $postes
+     */
+    public function setPostes($postes): void
+    {
+        $this->postes = $postes;
+    }
+
+    /**
+     * @param GamePoste $poste
+     */
+    public function addPoste(GamePoste $poste): void
+    {
+        $this->postes[] = $poste;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRankings()
+    {
+        return $this->rankings;
+    }
+
+    /**
+     * @param mixed $ranking
+     */
+    public function setRankings($ranking): void
+    {
+        $this->rankings = $ranking;
+    }
+
+    /**
+     * @param GameRanking $ranking
+     */
+    public function addRanking(GameRanking $ranking)
+    {
+        $this->rankings[] = $ranking;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users): void
+    {
+        $this->users = $users;
     }
 }

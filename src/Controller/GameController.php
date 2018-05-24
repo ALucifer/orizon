@@ -2,17 +2,23 @@
 
 namespace App\Controller;
 
+use App\Controller\Utils\Game\GameHandler;
 use App\Entity\Game;
-use App\Form\GameType;
 use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class GameController
+ * @package App\Controller
+ *
+ * @Route("/jeux", name="game_")
+ */
 class GameController extends Controller
 {
     /**
-     * @Route("/jeux", name="game_index")
+     * @Route("/", name="index")
      *
      * @param GameRepository $gameRepository
      * @return \Symfony\Component\HttpFoundation\Response
@@ -25,24 +31,21 @@ class GameController extends Controller
    }
 
     /**
-     * @Route("/jeux/add", name="game_add")
+     * @Route("/add", name="add")
      *
      * @param Request $request
+     * @param GameHandler $handler
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function add(Request $request)
+    public function add(Request $request, GameHandler $handler)
     {
+
         $game = new Game();
+        $form = $handler->createForm($game);
 
-        $form = $this->createForm(GameType::class, $game);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $game = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($game);
-            $em->flush();
+        if ($handler->process($form, $request)) {
+            $handler->success($game);
             $this->addFlash('success', 'Ce jeu à bien été ajouté à la liste de vos jeux');
             return $this->redirectToRoute('game_index');
         }
@@ -53,7 +56,7 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("/jeux/show/{slug}", name="game_show")
+     * @Route("/show/{slug}", name="show")
      *
      * @param Game $game
      * @return \Symfony\Component\HttpFoundation\Response

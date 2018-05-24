@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -85,11 +86,29 @@ class User implements AdvancedUserInterface
     private $tokenExpire;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Language", inversedBy="users")
+     * @ORM\JoinTable(name="user_language")
+     */
+    private $languages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Location")
+     */
+    private $location;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserGame", mappedBy="user")
+     */
+    private $games;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->isActive = true;
+        $this->languages = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
 
@@ -295,6 +314,46 @@ class User implements AdvancedUserInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param mixed $languages
+     */
+    public function setLanguages($languages): void
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @param Language $language
+     */
+    public function addLanguage(Language $language): void
+    {
+        $this->languages[] = $language;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location): void
+    {
+        $this->location = $location;
+    }
+
+    /**
      * Returns the salt that was originally used to encode the password.
      *
      * This can return null if the password was not encoded using a salt.
@@ -386,4 +445,6 @@ class User implements AdvancedUserInterface
     {
         return $this->isActive;
     }
+
+
 }

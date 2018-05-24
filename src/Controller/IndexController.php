@@ -32,3 +32,13 @@ class IndexController extends Controller
 
     }
 }
+=======
+    /**
+     * @Route("/coming_soon")
+     */
+    public function comingsoon()
+    {
+        return $this->render('index/coming_soon.html.twig');
+
+    }
+}

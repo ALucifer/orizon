@@ -1,0 +1,26 @@
+framework:
+    workflows:
+        structure_add:
+            type: 'workflow'
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'state'
+            supports:
+                - App\Entity\Structure
+            initial_place: created
+            places:
+                - created
+                - valide
+                - invalide
+                - deleted
+            transitions:
+                validation_creation:
+                  from: created
+                  to: valide
+                refuse_creation:
+                  from: created
+                  to: invalide
+                delete_struture:
+                  from: [created, valide]
+                  to: deleted
