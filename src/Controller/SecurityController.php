@@ -38,22 +38,22 @@ class SecurityController extends Controller
         $user = new User();
         $form = $this->createForm(InscriptionType::class, $user);
         try {
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
-            $user->setRoles(['ROLE_UTILISATEUR']);
+                // 3) Encode the password (you could also do this via Doctrine listener)
+                $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+                $user->setRoles(['ROLE_UTILISATEUR']);
 
-            // 4) save the User!
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+                // 4) save the User!
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('login');
-        }
+                return $this->redirectToRoute('login');
+            }
+          
         }catch(ConstraintViolationException $e){
             $this->addFlash('error', 'L\'adresse email existe déjà');
         }

@@ -1,28 +1,55 @@
 {% extends "base.html.twig" %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/particles.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/inscription.js') }}"></script>
+    <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('callback - particles.js loaded...');
+        });</script>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/inscription.css') }}"/>
+{% endblock %}
 
 {% block body %}
+    <div id="particles-js"></div>
 
-<div class="col-6">
-    <form  action="{{ path('login') }}" method="post">
-        <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
 
-        <label for="password">Password:</label>
-        <input type="hidden" name="_target_path" value="/jeux/add">
-        <input type="password" class="form-control" id="password" name="_password" />
+    <div class="signupSection">
+        <div class="info">
+            <h2>Tu as qu'une chose à faire pour participer à ton avenir</h2>
+            <p>Connecte toi pour accéder à toutes les fonctionnalités de Orizon.gg ! </p>
 
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input type="hidden" name="_target_path" value="/account" />
-        #}
-
-        <button class="btn btn-danger" type="submit">Se connecter</button>
+            <p>Si tu souhaites t'inscrire clique <a href={{ path('inscription') }}>ici</a></p>
         </div>
-    </form>
-</div>
-    <a href="{{ path('forgot_Password') }}"> mot de passe oublié ?</a>
+        <form  action="{{ path('login') }}" method="post" class="signupForm">
+            <ul class="noBullet">
+                <li>
+                    <label for="email"></label>
+                    <div class="form-group">
+                        <label id="email" for="inscription_email" class="form-control-label required">Insérez votre Email</label>
+                        <input type="email" placeholder="Email" class="inputFields form-control" id="email" name="_username" value="{{ last_username }}" oninput="return userNameValidation(this.value)"/>
+                    </div>
+                </li>
+                <li>
+                    <label for="password"></label>
+                    <div class="form-group">
+                        <input type="hidden" name="_target_path" value="/coming_soon">
+                        <label for="inscription_Password_first" class="form-control-label required">Mot de passe</label>
+                        <input type="password" placeholder="Mot de passe" class="inputFields form-control" id="password" name="_password" />
+                    </div>
+                </li>
+                <li id="center-btn">
+                    <div class="form-group">
+                        <button type="submit" class="btn-secondary btn">Se connecter</button>
+                    </div>
+                </li>
+            </ul>
+            <a href="{{ path('forgot_Password') }}"> mot de passe oublié ?</a>
+
+        </form>
+
+    </div>
+
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}

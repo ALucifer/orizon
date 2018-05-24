@@ -14,15 +14,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IndexController extends Controller
 {
     /**
-      * @Route("/index", name="index")
-      * @Route("/")
+     * @Route("/index", name="index")
+     * @Route("/")
      */
     public function index()
-{
+    {
 
-    return $this->render('user/index.html.twig', ['controller_name' => 'IndexController']);
+        return $this->render('index/index.html.twig');
+    }
+
+    /**
+     * @Route("/coming_soon")
+     */
+    public function comingsoon()
+    {
+        return $this->render('index/coming_soon.html.twig');
+
+    }
 }
-
+=======
     /**
      * @Route("/coming_soon")
      */
