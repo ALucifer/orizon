@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -19,8 +20,11 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $data = $this->getDoctrine()->getRepository(User::class)->Results();
+        $count = $this->getDoctrine()->getRepository(User::class)->CountUser();
 
-        return $this->render('index/index.html.twig');
+
+        return $this->render('index/index.html.twig', ['data'=> $data, 'count'=>$count]);
     }
 
     /**
