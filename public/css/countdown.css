@@ -1,4 +1,10 @@
-
+body{
+    background: url('../css/background.jpg') no-repeat;
+    margin:0;
+    padding:0;
+    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+    background-size: cover;
+}
 .container {
     position: absolute;
     margin-top: 300px;
@@ -207,7 +213,4 @@
         transform: rotateX(-180deg);
         z-index: 1;
     }
-}
-body {
-    background: #444;
 }

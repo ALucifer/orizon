@@ -15,7 +15,7 @@
         </div>
     </div>
 </div>
-
+{% if is_granted('ROLE_ADMINISTRATEUR') %}
     aller vers l'accueil <a href={{ path('index') }}>ici</a>
-
+{% endif %}
 {% endblock %}
