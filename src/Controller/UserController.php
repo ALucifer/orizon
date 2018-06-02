@@ -10,9 +10,6 @@ class UserController extends Controller
 {
 
     /**
-     * @Route("/profile", name="user_profile")
-     *
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

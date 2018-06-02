@@ -1,21 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{{ asset('css/countdown.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/countdownv2.css') }}"/>
 {% endblock %}
 {% block javascripts %}
-<script  type="text/javascript" src="{{ asset('js/countdown.js') }}"></script>
+    <script  type="text/javascript" src="{{ asset('assets/js/countdownv2.js') }}"></script>
 {% endblock %}
 
 {% block title %} Coming soon ! {% endblock %}
 {% block body %}
-<div class="row">
-    <div class="col-6 offset-3">
-        <div class="container text-center">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="container text-center">
+
+                <div id="countdown">
+                    <div id='tiles'></div>
+                    <div class="labels">
+                        <li>Days</li>
+                        <li>Hours</li>
+                        <li>Mins</li>
+                        <li>Secs</li>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-{% if is_granted('ROLE_ADMINISTRATEUR') %}
-    aller vers l'accueil <a href={{ path('index') }}>ici</a>
-{% endif %}
 {% endblock %}

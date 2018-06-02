@@ -3,6 +3,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+body {
+    background-color: lightblue;
+}
+
 .signupSection {
     position: absolute;
     top: 50%;

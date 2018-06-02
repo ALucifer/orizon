@@ -14,10 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class IndexController extends Controller
 {
-    /**
-     * @Route("/index", name="index")
-     * @Route("/")
-     */
     public function index()
     {
         $data = $this->getDoctrine()->getRepository(User::class)->Results();
@@ -28,17 +24,8 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/coming_soon")
-     */
-    public function comingsoon()
-    {
-        return $this->render('index/coming_soon.html.twig');
-
-    }
-}
-=======
-    /**
-     * @Route("/coming_soon")
+     * @Route("/index")
+     * @Route("/")
      */
     public function comingsoon()
     {
