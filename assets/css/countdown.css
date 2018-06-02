@@ -1,5 +1,5 @@
 body{
-    background: url('../css/background.jpg') no-repeat;
+    background: url('/img/background.jpg') no-repeat;
     margin:0;
     padding:0;
     -webkit-background-size: cover; /* pour anciens Chrome et Safari */

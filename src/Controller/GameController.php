@@ -13,12 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * Class GameController
  * @package App\Controller
  *
- * @Route("/jeux", name="game_")
  */
 class GameController extends Controller
 {
     /**
-     * @Route("/", name="index")
      *
      * @param GameRepository $gameRepository
      * @return \Symfony\Component\HttpFoundation\Response
@@ -31,7 +29,6 @@ class GameController extends Controller
    }
 
     /**
-     * @Route("/add", name="add")
      *
      * @param Request $request
      * @param GameHandler $handler
@@ -56,7 +53,6 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("/show/{slug}", name="show")
      *
      * @param Game $game
      * @return \Symfony\Component\HttpFoundation\Response

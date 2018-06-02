@@ -2,19 +2,23 @@ var Encore = require('@symfony/webpack-encore');
 
 Encore
     // the project directory where compiled assets will be stored
-    .setOutputPath('public/')
+    .setOutputPath('public/assets')
     // the public path used by the web server to access the previous directory
-    .setPublicPath('/')
-    .cleanupOutputBeforeBuild()
+    .setPublicPath('/assets')
     .enableSourceMaps(!Encore.isProduction())
-    // uncomment to create hashed filenames (e.g. app.abc123.css)
-    // .enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
      .addEntry('js/app', './assets/js/app.js')
-     .addStyleEntry('css/app', './assets/css/app.css')
-     .addStyleEntry('css/inscription', './assets/css/inscription.css')
+    .addEntry('js/countdownv2', './assets/js/countdownv2.js')
+    .addEntry('js/countdown', './assets/js/countdown.js')
 
+    .addStyleEntry('css/app', './assets/css/app.css')
+    .addStyleEntry('css/countdown', './assets/css/countdown.css')
+    .addStyleEntry('css/countdownv2', './assets/css/countdownv2.css')
+
+    .cleanupOutputBeforeBuild()
+    // show OS notifications when builds finish/fail
+    //.enableBuildNotifications()
     // uncomment if you use Sass/SCSS files
     // .enableSassLoader()
     // uncomment for legacy applications that require $/jQuery as a global variable
