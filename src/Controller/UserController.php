@@ -10,6 +10,7 @@ class UserController extends Controller
 {
 
     /**
+     * @Route("/profile", name="user_profile")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

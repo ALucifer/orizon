@@ -23,28 +23,22 @@ class UserRepository extends ServiceEntityRepository
 
     public function Results()
     {
-        $qb = $this->createQueryBuilder('u')
-            ->setMaxResults(9)
-            ->getQuery();
 
-        return $qb->execute();
+        $users = $this->findBy(
+            [],
+            [],
+            6,
+            null
+        );
 
+        return ;
     }
 
     /**
      * @return int|mixed
-     * @throws NonUniqueResultException
      */
     public function CountUser()
     {
-        $qb = $this->createQueryBuilder('u')
-            ->select('count(u.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
-
-
-        //$this->findAll()->count();
-
-        return $qb;
+        return count($this->findAll());
     }
 }

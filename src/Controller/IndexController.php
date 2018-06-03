@@ -37,4 +37,9 @@ class IndexController extends Controller
         return $this->render('index/coming_soon.html.twig');
 
     }
+
+    public function sidebar()
+    {
+
+    }
 }
