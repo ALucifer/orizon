@@ -14,6 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class IndexController extends Controller
 {
+    /**
+     * @Route("/index", name="index")
+     * @Route("/", name="index")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function index()
     {
         $data = $this->getDoctrine()->getRepository(User::class)->Results();
@@ -24,8 +30,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/index")
-     * @Route("/")
+     * @Route("/coming-soon")
      */
     public function comingsoon()
     {
