@@ -43,6 +43,8 @@ class UserRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
 
 
+        //$this->findAll()->count();
+
         return $qb;
     }
 }
