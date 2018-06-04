@@ -1,5 +1,6 @@
 .panel-card{
-    border: 1px solid;
-    margin: 5px;
-    background: grey;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    margin: 15px;
+    background: #efefef;
 }
