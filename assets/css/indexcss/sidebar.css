@@ -4,3 +4,15 @@
     margin: 15px;
     background: #efefef;
 }
+
+.sidebar-img-profil{
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+    width: 125px;
+    height: 125px;
+    margin: 10px;
+}
+.margin {
+    margin: 15px;
+}
