@@ -1,6 +1,10 @@
 a{
     text-decoration: none;
-    color: #0e0c13;
+    color: #0a236a;
+}
+a:hover{
+    text-decoration: none;
+    color: #640d0d;
 }
 .divider {
     border-top: 1px solid #8c8b8b;
