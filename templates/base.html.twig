@@ -21,11 +21,12 @@
         {% endblock %}
     </head>
     <body>
-        <div class="row">
 
-        {% block body %}
-        {% endblock %}
+        <div class="row vertical-margin">
+            {% block body %}
+            {% endblock %}
         </div>
+
         {% block javascripts %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="{{ asset('assets/js/app.js') }}"></script>
@@ -34,5 +35,6 @@
             {% endblock %}
 
         {% endblock %}
+
     </body>
 </html>

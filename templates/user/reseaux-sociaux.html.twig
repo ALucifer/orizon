@@ -3,7 +3,11 @@
 {% block body %}
     {{ render(controller('App\\Controller\\IndexController::sidebar')) }}
     <div class="col-9">
-        reseaux sociaux
+        <div class="col-12 panel-card panel-user">
+            <img src="{{ asset('img/reseaux-sociaux/facebook.svg') }}" alt="Mon facebook">
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12"></div>
     </div>
 {% endblock %}
 
