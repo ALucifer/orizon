@@ -4,12 +4,18 @@
     {{ render(controller('App\\Controller\\IndexController::sidebar')) }}
     <div class="col-9">
         <div class="col-12 panel-card panel-user">
-            <img src="{{ asset('img/reseaux-sociaux/facebook.svg') }}" alt="Mon compte facebook">
-            <img src="{{ asset('img/reseaux-sociaux/twitter.svg') }}" alt="Mon compte twitter">
-            <img src="{{ asset('img/reseaux-sociaux/twitch.svg') }}" alt="Mon chaine twich">
+            <div class="col-12 vertical-margin">
+                <img src="{{ asset('img/reseaux-sociaux/facebook.svg') }}" alt="Mon compte facebook" class="social-icon">
+                {{ form(facebook) }}
+            </div>
+            <div class="col-12 vertical-margin">
+                <img src="{{ asset('img/reseaux-sociaux/twitter.svg') }}" alt="Mon compte twitter" class="social-icon">
+                {{ form(twitter) }}
+            </div>
+            <div class="col-12 vertical-margin">
+                <img src="{{ asset('img/reseaux-sociaux/twitch.svg') }}" alt="Ma chaine twich" class="social-icon">
+            </div>
         </div>
-        <div class="col-12"></div>
-        <div class="col-12"></div>
     </div>
 {% endblock %}
 

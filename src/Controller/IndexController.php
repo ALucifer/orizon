@@ -40,6 +40,8 @@ class IndexController extends Controller
 
     public function sidebar()
     {
-        return $this->render('index/sidebar.html.twig');
+        return $this->render('index/sidebar.html.twig', [
+            'user' => $this->getUser()
+        ]);
     }
 }
