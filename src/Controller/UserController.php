@@ -8,6 +8,7 @@ use App\Form\ReseauxSociauxType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -19,7 +20,7 @@ class UserController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function profile()
     {
@@ -31,7 +32,7 @@ class UserController extends Controller
     /**
      * @Route("/informations-general", name="user_info_general")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function infoGeneral()
     {
@@ -47,30 +48,30 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param UserHandler $userHandler
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function reseauxSociaux(Request $request, UserHandler $userHandler)
     {
-        $userRepository = $this->getDoctrine()->getRepository(UserInformation::class);
+        $reseauxForm = $userHandler->createForm($this->getUser());
 
-        $useFacebook =  $userRepository->findOneBy(['user' => $this->getUser()]);
-        $userTwitter = $userRepository->findOneBy(['user' => $this->getUser()]);
-
-        $facebookForm = $userHandler->createReseauForm($this->getUser(),'facebook');
-        $twitterForm = $userHandler->createReseauForm($this->getUser(), 'twitter');
-
-        if($userHandler->process($facebookForm, $request)) {
-
-        }
-
-        if($userHandler->process($twitterForm, $request)) {
-
+        if($userHandler->process($reseauxForm, $request)) {
+            $userHandler->success($reseauxForm->getData());
         }
 
         return $this->render('user/reseaux-sociaux.html.twig', [
             'user' => $this->getUser(),
-            'facebook' => $facebookForm->createView(),
-            'twitter' => $twitterForm->createView()
+            'reseauxForm' => $reseauxForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/mes-jeux", name="user_mes_jeux")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function mesJeux(Request $request)
+    {
+        return $this->render('user/mes-jeux.html.twig');
     }
 }

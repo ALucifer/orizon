@@ -5,23 +5,34 @@ use App\Controller\Utils\AbstractHandler;
 use App\Entity\User;
 use App\Entity\UserInformation;
 use App\Form\ReseauxSociauxType;
-use Symfony\Component\Form\FormInterface;
 
 class UserHandler extends AbstractHandler
 {
 
-    public function createReseauForm(User $user, $reseau)
+    public function createForm(User $user)
     {
         $user = $this->getUserInformations($user);
+
         return $this
             ->formFactory
             ->create(
                 ReseauxSociauxType::class,
-                $user,
-                [
-                    'reseau' => $reseau
-                ]
+                $user
             );
+    }
+
+    public function success($user)
+    {
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    public function process($form, $request)
+    {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            return true;
+        }
     }
 
     /**
@@ -30,13 +41,22 @@ class UserHandler extends AbstractHandler
      */
     private function getUserInformations(User $user)
     {
-        if(!$user){
-            return $this->createUser();
+        $userInformation = $this->em->getRepository(UserInformation::class)->findOneBy(['user' => $user]);
+
+        if(!$userInformation){
+            return $this->createUserInformation($user);
         }
-        return $this->em->getRepository(UserInformation::class)->findOneBy(['user' => $user]);
+
+        return $userInformation;
     }
-    private function createUser()
+
+    /**
+     * @return UserInformation
+     */
+    private function createUserInformation(User $user)
     {
-        return new User();
+        $userInformation = new UserInformation();
+        $userInformation->setUser($user);
+        return $userInformation;
     }
 }

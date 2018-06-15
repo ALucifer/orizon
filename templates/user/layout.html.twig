@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ render(controller('App\\Controller\\IndexController::sidebar')) }}
+    {% block user_block '' %}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

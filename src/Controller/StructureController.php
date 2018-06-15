@@ -6,6 +6,7 @@ use App\Controller\Utils\Structure\StructureHandler;
 use App\Entity\Structure;
 use App\Repository\StructureRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -20,7 +21,7 @@ class StructureController extends Controller
      * @Route("/", name="structure_index")
      *
      * @param StructureRepository $structureRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(StructureRepository $structureRepository)
     {
@@ -33,7 +34,7 @@ class StructureController extends Controller
      * @Route("/show/{id}", name="structure_show")
      *
      * @param Structure $structure
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function show(Structure $structure)
     {
@@ -48,7 +49,7 @@ class StructureController extends Controller
      * @param Request $request
      * @param StructureHandler $handler
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function add(Request $request, StructureHandler $handler)
     {
@@ -71,7 +72,7 @@ class StructureController extends Controller
      *
      * @param Structure $structure
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function edit(Structure $structure)
     {
