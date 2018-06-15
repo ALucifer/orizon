@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Utils\User\UserHandler;
 use App\Entity\UserInformation;
 use App\Form\ReseauxSociauxType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -45,46 +46,26 @@ class UserController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @param Request $request
+     * @param UserHandler $userHandler
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function reseauxSociaux(Request $request)
+    public function reseauxSociaux(Request $request, UserHandler $userHandler)
     {
-        $userInformation = $this
-            ->getDoctrine()
-            ->getRepository(UserInformation::class)
-            ->findOneBy(['user' => $this->getUser()]);
-        // Si il n'y a pas d'information renseigné alors on en créer une nouvelle
-        if (!$userInformation) {
-            $userInformation = new UserInformation();
-            $userInformation->setUser($this->getUser());
-        }
-        $facebookForm = $this->createForm(ReseauxSociauxType::class, $userInformation, ['reseau' => 'facebook']);
-        $twitterForm = $this->createForm(ReseauxSociauxType::class, $userInformation, ['reseau' => 'twitter']);
+        $userRepository = $this->getDoctrine()->getRepository(UserInformation::class);
 
-        $facebookForm->handleRequest($request);
-        $twitterForm->handleRequest($request);
+        $useFacebook =  $userRepository->findOneBy(['user' => $this->getUser()]);
+        $userTwitter = $userRepository->findOneBy(['user' => $this->getUser()]);
 
-        //dump($facebookForm->isSubmitted(), $twitterForm->isSubmitted());die;
+        $facebookForm = $userHandler->createReseauForm($this->getUser(),'facebook');
+        $twitterForm = $userHandler->createReseauForm($this->getUser(), 'twitter');
 
-        if($facebookForm->isSubmitted() && $facebookForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($facebookForm->getData());
-            $em->flush();
-            return $this->render('user/reseaux-sociaux.html.twig', [
-                'user' => $this->getUser(),
-                'facebook' => $facebookForm->createView(),
-                'twitter' => $twitterForm->createView()
-            ]);
+        if($userHandler->process($facebookForm, $request)) {
+
         }
 
-        if($twitterForm->isSubmitted() && $twitterForm->isValid()) {
-            return $this->render('user/reseaux-sociaux.html.twig', [
-                'user' => $this->getUser(),
-                'facebook' => $facebookForm->createView(),
-                'twitter' => $twitterForm->createView()
-            ]);
-        }
+        if($userHandler->process($twitterForm, $request)) {
 
+        }
 
         return $this->render('user/reseaux-sociaux.html.twig', [
             'user' => $this->getUser(),
