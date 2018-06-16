@@ -72,6 +72,8 @@ class UserController extends Controller
      */
     public function mesJeux(Request $request)
     {
-        return $this->render('user/mes-jeux.html.twig');
+        return $this->render('user/mes-jeux.html.twig',[
+            'user' => $this->getUser()
+        ]);
     }
 }

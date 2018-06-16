@@ -16,13 +16,25 @@ class ReseauxSociauxType extends AbstractType
     {
         $builder
             ->add('facebook', TextType::class, [
-                'required' => false
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'col-11'
+                ]
             ])
             ->add('twitter', TextType::class, [
-                'required' => false
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'col-11'
+                ]
             ])
             ->add('twitch', TextType::class, [
-                'required' => false
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'col-11'
+                ]
             ])
         ;
     }
