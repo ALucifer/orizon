@@ -7,7 +7,6 @@
 {% block body %}
     <div id="particles-js"></div>
 
-
     <div class="signupSection">
         <div class="info">
             <h2>Tu as qu'une chose à faire pour participer à ton avenir</h2>
@@ -17,17 +16,17 @@
         </div>
         <form  action="{{ path('login') }}" method="post" class="signupForm">
             <ul class="noBullet">
-                <li>Insérez votre Email:
+                <li>
                     <label for="email"></label>
                     <div class="form-group">
                         <input type="email" placeholder="Email" class="inputFields form-control" id="email" name="_username" value="{{ last_username }}" oninput="return userNameValidation(this.value)"/>
                     </div>
                 </li>
-                <li>Mot de passe:
+                <li>
                     <label for="password"></label>
                     <div class="form-group">
                         <input type="hidden" name="_target_path" value="/">
-                        <label for="inscription_Password_first" class="form-control-label required">Mot de passe</label>
+                        <!--<label for="inscription_Password_first" class="form-control-label required">Mot de passe</label>-->
                         <input type="password" placeholder="Mot de passe" class="inputFields form-control" id="password" name="_password" />
                     </div>
                 </li>
@@ -48,7 +47,7 @@
     {% endif %}
 {% endblock %}
 
-{% block javascripts %}
+{% block child_js %}
     <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
     <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
         console.log('callback - particles.js loaded...');
