@@ -21,28 +21,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function Results()
-    {
-        $qb = $this->createQueryBuilder('u')
-            ->setMaxResults(9)
-            ->getQuery();
-
-        return $qb->execute();
-
-    }
-
-    /**
-     * @return int|mixed
-     * @throws NonUniqueResultException
-     */
-    public function CountUser()
-    {
-        $qb = $this->createQueryBuilder('u')
-            ->select('count(u.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
 
 
-        return $qb;
-    }
+
 }

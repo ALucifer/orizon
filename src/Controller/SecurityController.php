@@ -26,7 +26,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class SecurityController extends Controller
 {
     /**
-     *
+     * @Route("/inscription", name="inscription")
+
      *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -63,7 +64,8 @@ class SecurityController extends Controller
     }
 
     /**
-     *
+     * @Route("/login", name="login")
+
      * @param AuthenticationUtils $authenticationUtils
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -79,7 +81,8 @@ class SecurityController extends Controller
     }
 
     /**
-     *
+     * @Route("/forgotPassword", name="forgot_Password")
+
      * @param Request $request
      * @param TokenGeneratorInterface $tokenGenerator
      *

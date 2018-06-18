@@ -40,7 +40,12 @@ class StructureController extends Controller
         ]);
     }
 
+
+
     /**
+     *
+     * /
+     * @Route("/add", name="structure_add")
      *
      * @param Request $request
      * @param StructureHandler $handler

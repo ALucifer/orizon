@@ -1,10 +1,47 @@
 {% extends 'base.html.twig' %}
+{% block title %} Bienvenue sur Orizon!
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/inscription.css') }}"/>
+{% endblock %}
 
-{% block title %}
-
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/particles.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
+    <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('callback - particles.js loaded...');
+        });</script>
 {% endblock %}
 
 {% block body %}
-    {{ form(form) }}
-{% endblock %}
+    <div id="particles-js"></div>
 
+    <div class="signupSection">
+        <div class="info">
+            <h2>Une mission pour être le meilleur </h2>
+            <p>Ton Futur Esportif est là</p>
+            <p>Si tu souhaites te connecter clique <a href={{ path('login') }}>ici</a></p>
+
+            <img src="{{ asset('css/orizon_logotest.png') }}" alt="">
+
+        </div>
+        {{ form_start(form, {'METHOD': 'POST'}, {'label_attr': {'class:':'signupForm'}}) }}
+        <h2>S'inscrire</h2>
+        <ul class="noBullet">
+            <li>
+                <label for="email"></label>
+                {{ form_row(form.nom, {'label_attr': {'id': 'email', 'name':'email'}} ) }}
+            </li>
+            <li>
+
+                <label for="password"></label>
+                {{ form_row(form.president) }}
+            </li>
+            <li id="center-btn">
+                {{ form_row(form.submit) }}
+            </li>
+        </ul>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

@@ -8,13 +8,15 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
 
     // uncomment to define the assets of the project
-     .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/countdownv2', './assets/js/countdownv2.js')
     .addEntry('js/countdown', './assets/js/countdown.js')
+    .addEntry('js/inscription', './assets/js/inscription.js')
 
     .addStyleEntry('css/app', './assets/css/app.css')
     .addStyleEntry('css/countdown', './assets/css/countdown.css')
     .addStyleEntry('css/countdownv2', './assets/css/countdownv2.css')
+    .addStyleEntry('css/inscription', './assets/css/inscription.css')
 
     .cleanupOutputBeforeBuild()
     // show OS notifications when builds finish/fail

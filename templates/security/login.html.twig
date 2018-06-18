@@ -1,13 +1,12 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/particles.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/inscription.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
     <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
             console.log('callback - particles.js loaded...');
         });</script>
 {% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/inscription.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}"/>
 {% endblock %}
 
 {% block body %}
@@ -23,18 +22,16 @@
         </div>
         <form  action="{{ path('login') }}" method="post" class="signupForm">
             <ul class="noBullet">
-                <li>
+                <li>Insérez votre Email:
                     <label for="email"></label>
                     <div class="form-group">
-                        <label id="email" for="inscription_email" class="form-control-label required">Insérez votre Email</label>
                         <input type="email" placeholder="Email" class="inputFields form-control" id="email" name="_username" value="{{ last_username }}" oninput="return userNameValidation(this.value)"/>
                     </div>
                 </li>
-                <li>
+                <li>Mot de passe:
                     <label for="password"></label>
                     <div class="form-group">
                         <input type="hidden" name="_target_path" value="/coming_soon">
-                        <label for="inscription_Password_first" class="form-control-label required">Mot de passe</label>
                         <input type="password" placeholder="Mot de passe" class="inputFields form-control" id="password" name="_password" />
                     </div>
                 </li>

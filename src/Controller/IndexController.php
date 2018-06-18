@@ -9,22 +9,54 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\UserGame;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class IndexController extends Controller
 {
+    /**
+ * @Route("/index")
+ * @Route("/")
+ */
     public function index()
     {
-        $data = $this->getDoctrine()->getRepository(User::class)->Results();
-        $count = $this->getDoctrine()->getRepository(User::class)->CountUser();
+        $results = $this->getDoctrine()->getRepository(UserGame::class)->findAll();
+
+        $resultsadc = $this->getDoctrine()->getRepository(UserGame::class)->ResultsAdc();
+        $countadc = $this->getDoctrine()->getRepository(UserGame::class)->CountAdc();
+
+        $resultsjgl = $this->getDoctrine()->getRepository(UserGame::class)->ResultsJungle();
+        $countjgl = $this->getDoctrine()->getRepository(UserGame::class)->CountJungle();
+
+        $resultstop = $this->getDoctrine()->getRepository(UserGame::class)->ResultsTop();
+        $counttop = $this->getDoctrine()->getRepository(UserGame::class)->CountTop();
+        
+        $resultsmid = $this->getDoctrine()->getRepository(UserGame::class)->ResultsMid();
+        $countmid = $this->getDoctrine()->getRepository(UserGame::class)->CountMid();
+        
+        $resultssupport = $this->getDoctrine()->getRepository(UserGame::class)->ResultsSupport();
+        $countsupport = $this->getDoctrine()->getRepository(UserGame::class)->CountSupport();
+        
+        
+        return $this->render('index/index.html.twig', [
 
 
-        return $this->render('index/index.html.twig', ['data'=> $data, 'count'=>$count]);
+            'adc'=> $resultsadc, 'countadc'=>$countadc,
+            'jgl'=>$resultsjgl, 'countjgl'=>$countjgl,
+            'mid'=>$resultsmid, 'countmid'=>$countmid,
+            'top'=>$resultstop, 'counttop'=>$counttop,
+            'support'=>$resultssupport, 'countsupport'=>$countsupport,
+            'results'=>$results
+
+
+
+
+        ]);
     }
 
     /**
-     * @Route("/index")
+     * @Route("/coming_soon")
      * @Route("/")
      */
     public function comingsoon()
@@ -32,4 +64,5 @@ class IndexController extends Controller
         return $this->render('index/coming_soon.html.twig');
 
     }
+
 }
