@@ -26,32 +26,34 @@
             <h2>Une mission pour être le meilleur </h2>
             <p>Ton Futur Esportif est là</p>
             <p>Si tu souhaites te connecter clique <a href={{ path('login') }}>ici</a></p>
+            <p>Tu représente une structure et tu souhaites être référencer pour pouvoir recruter et participer activement à L'esport ?
+                Clique <a href= {{ path('structure_add') }}>ici</a> alors !
+
+            </p>
             <img src="{{ asset('css/orizon_logotest.png') }}" alt="">
 
         </div>
         {{ form_start(form, {'METHOD': 'POST'}, {'label_attr': {'class:':'signupForm'}}) }}
-        <h2>S'inscrire</h2>
+        <h2>Inscription</h2>
         <ul class="noBullet">
-            <li>
-                <label for="email"></label>
-                {{ form_row(form.email, {'label_attr': {'id': 'email', 'name':'email'}},  oninput="return userNameValidation(this.value)") }}
-            </li>
-            <li>
+
+            <li>Email :
+                {{ form_row(form.email, oninput="return userNameValidation(this.value)") }}
                 {% for label, messages in app.flashes %}
                     {% for message in messages  %}
-                        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        <div class="flash-{{ label }} alert-dismissible fade show" role="alert">
                             {{ message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                     {% endfor %}
                 {% endfor %}
-                <label for="password"></label>
-                {{ form_row(form.Password, {'label_attr': {'class':'inputFields', 'id': 'password', 'name':'password'}},  oninput="return passwordValidation(this.value)") }}
+            </li>
+            <li> Mot de passe :
+
+
+                {{ form_row(form.Password, {'label_attr': {'class':'inputFields', 'id': 'password'}},  oninput="return passwordValidation(this.value)") }}
             </li>
             <li id="center-btn">
-                {{ form_row(form.submit) }}
+                {{ form_row(form.submit,{'label_attr': {'id': 'join-btn','name':'join'}}) }}
             </li>
         </ul>
         {{ form_end(form) }}
