@@ -1,12 +1,7 @@
-{% extends 'base.html.twig' %}
-{% block javascripts %}
-    <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
-    <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
-            console.log('callback - particles.js loaded...');
-        });</script>
-{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}"/>
+{% extends "layout.html.twig" %}
+
+{% block child_css %}
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('css/inscription.css') }}"/>#}
 {% endblock %}
 
 {% block body %}
@@ -50,4 +45,11 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
+    <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
+        console.log('callback - particles.js loaded...');
+      });</script>
 {% endblock %}

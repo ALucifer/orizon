@@ -16,9 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IndexController extends Controller
 {
     /**
- * @Route("/index")
- * @Route("/")
- */
+     * @Route("/index", name="index")
+     * @Route("/", name="index")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function index()
     {
         $results = $this->getDoctrine()->getRepository(UserGame::class)->findAll();
@@ -40,29 +42,27 @@ class IndexController extends Controller
         
         
         return $this->render('index/index.html.twig', [
-
-
             'adc'=> $resultsadc, 'countadc'=>$countadc,
             'jgl'=>$resultsjgl, 'countjgl'=>$countjgl,
             'mid'=>$resultsmid, 'countmid'=>$countmid,
             'top'=>$resultstop, 'counttop'=>$counttop,
             'support'=>$resultssupport, 'countsupport'=>$countsupport,
             'results'=>$results
-
-
-
-
         ]);
     }
 
     /**
-     * @Route("/coming_soon")
-     * @Route("/")
+     * @Route("/coming-soon")
      */
     public function comingsoon()
     {
         return $this->render('index/coming_soon.html.twig');
 
+    }
+
+    public function sidebar()
+    {
+        return $this->render('index/sidebar.html.twig');
     }
 
 }

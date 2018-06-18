@@ -12,11 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * Class StructureController
  * @package App\Controller
-
+ * @Route("/structure")
  */
 class StructureController extends Controller
 {
     /**
+     * @Route("/", name="structure_index")
      *
      * @param StructureRepository $structureRepository
      * @return \Symfony\Component\HttpFoundation\Response
@@ -29,6 +30,7 @@ class StructureController extends Controller
     }
 
     /**
+     * @Route("/show/{id}", name="structure_show")
      *
      * @param Structure $structure
      * @return \Symfony\Component\HttpFoundation\Response
@@ -43,6 +45,7 @@ class StructureController extends Controller
 
 
     /**
+     * @Route("/add", name="structure_add")
      *
      * /
      * @Route("/add", name="structure_add")
@@ -69,6 +72,7 @@ class StructureController extends Controller
     }
 
     /**
+     * @Route("/edit/{id}", name="structure_edit")
      *
      * @param Structure $structure
      *

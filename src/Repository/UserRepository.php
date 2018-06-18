@@ -21,7 +21,24 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function Results()
+    {
 
+        $users = $this->findBy(
+            [],
+            [],
+            6,
+            null
+        );
 
+        return ;
+    }
 
+    /**
+     * @return int|mixed
+     */
+    public function CountUser()
+    {
+        return count($this->findAll());
+    }
 }

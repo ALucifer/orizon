@@ -1,15 +1,21 @@
-{% extends 'base.html.twig' %}
-{% block title %} Bienvenue sur Orizon!
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Bienvenue sur Orizon!
 {% endblock %}
-{% block stylesheets %}
+
+{% block child_css %}
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}"/>
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
-    <script type="text/javascript" > particlesJS.load('particles-js', 'particles.json', function() {
+    <script type="text/javascript" >
+      particlesJS.load('particles-js', 'particles.json', function() {
             console.log('callback - particles.js loaded...');
-        });</script>
+        });
+    </script>
 {% endblock %}
 
 {% block body %}

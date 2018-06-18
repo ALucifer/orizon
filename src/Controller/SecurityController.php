@@ -27,7 +27,6 @@ class SecurityController extends Controller
 {
     /**
      * @Route("/inscription", name="inscription")
-
      *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -65,7 +64,6 @@ class SecurityController extends Controller
 
     /**
      * @Route("/login", name="login")
-
      * @param AuthenticationUtils $authenticationUtils
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -82,7 +80,6 @@ class SecurityController extends Controller
 
     /**
      * @Route("/forgotPassword", name="forgot_Password")
-
      * @param Request $request
      * @param TokenGeneratorInterface $tokenGenerator
      *
@@ -122,6 +119,8 @@ class SecurityController extends Controller
 
     /**
      * Seul les utilisateurs non authentifié peuvent avoir accès a leur reset.
+     *
+     * @Route("/reset-password/{token}", name="reset_password", requirements={"token"}, methods={"GET|POST"})
      *
      *
      * @Entity("user", expr="repository.findOneByToken(token)")
