@@ -352,7 +352,11 @@
                     <a href="{{ path('login') }}" class="button1 bouncy" style="animation-delay:0.07s">Se connecter</a>
                     <a href="#" class="button1 bouncy" style="animation-delay:0.14s">Profil</a>
                     {% if is_granted ('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('logout') }}" class="button1 bouncy" style="animation-delay:0.21s">Se déconnecter</a>
+                        <a href="#" class="button1 bouncy" style="animation-delay:0.14s">Profil</a>
+                        <a href="{{ path('logout') }}" class="button1 bouncy" style="animation-delay:0.21s">Se déconnecter</a>
+                    {% else %}
+                        <a href="{{ path('inscription') }}" class="button1 bouncy">S'inscrire</a>
+                        <a href="{{ path('login') }}" class="button1 bouncy" style="animation-delay:0.07s">Se connecter</a>
                     {% endif %}
                     #}
                     <ul id="fixednav" class="nav main-nav nav-fixed navbar-nav navbar-right">
@@ -453,7 +457,11 @@
                     <a href="{{ path('login') }}" class="button1 bouncy" style="animation-delay:0.07s">Se connecter</a>
                     <a href="#" class="button1 bouncy" style="animation-delay:0.14s">Profil</a>
                     {% if is_granted ('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('user_profile') }}" class="button1 bouncy" style="animation-delay:0.14s">Profil</a>
                         <a href="{{ path('logout') }}" class="button1 bouncy" style="animation-delay:0.21s">Se déconnecter</a>
+                    {% else %}
+                        <a href="{{ path('inscription') }}" class="button1 bouncy">S'inscrire</a>
+                        <a href="{{ path('login') }}" class="button1 bouncy" style="animation-delay:0.07s">Se connecter</a>
                     {% endif %}
                     #}
                     <ul id="mainnav" class="nav main-nav navbar-nav navbar-right">

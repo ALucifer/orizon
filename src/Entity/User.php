@@ -102,6 +102,11 @@ class User implements AdvancedUserInterface
     private $games;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserInformation", mappedBy="user")
+     */
+    private $information;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -446,5 +451,20 @@ class User implements AdvancedUserInterface
         return $this->isActive;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getInformation()
+    {
+        return $this->information;
+    }
+
+    /**
+     * @param mixed $information
+     */
+    public function setInformation($information): void
+    {
+        $this->information = $information;
+    }
 
 }

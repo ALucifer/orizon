@@ -1,9 +1,11 @@
 <div class="col-3">
     <div class="col-12 panel-card text-center">
         <img src="{{ asset('img/about-bg.jpg') }}" alt="" class="sidebar-img-profil">
-        <div>Nom prénom</div>
+        <div>
+            <p>{{ user.name ~ ' ' ~ user.firstName }}</p>
+        </div>
         <div class="vertical-margin">
-            <a href="" class="col-10 col-sm-offset-1 btn btn-danger">Se deconnecter</a>
+            <a href="{{ path('logout') }}" class="col-10 col-sm-offset-1 btn btn-danger">Se deconnecter</a>
         </div>
     </div>
     <div class="col-12 panel-card">
@@ -36,7 +38,7 @@
         <div>
             <ul>
                 <li>
-                    <a href="#">Mes jeux</a>
+                    <a href="{{ url('user_mes_jeux') }}">Mes jeux</a>
                 </li>
                 <li>
                     <a href="#">Ajouter un jeu</a>

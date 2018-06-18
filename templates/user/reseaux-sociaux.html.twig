@@ -1,9 +1,38 @@
-{% extends 'layout.html.twig' %}
+{% extends 'user/layout.html.twig' %}
 
-{% block body %}
-    {{ render(controller('App\\Controller\\IndexController::sidebar')) }}
+{% block user_block %}
     <div class="col-9">
-        reseaux sociaux
+        <div class="col-4 panel-card panel-user">
+            {{ form_start(reseauxForm) }}
+            <div class="row vertical-margin">
+                <div class="col-1 text-center">
+                    <img src="{{ asset('img/reseaux-sociaux/facebook.svg') }}" alt="Mon compte facebook" class="social-icon">
+                </div>
+                <div class="col-11">
+                    {{ form_widget(reseauxForm.facebook) }}
+                </div>
+            </div>
+            <div class="row vertical-margin">
+                <div class="col-1 text-center">
+                    <img src="{{ asset('img/reseaux-sociaux/twitter.svg') }}" alt="Mon compte twitter" class="social-icon">
+                </div>
+                <div class="col-11">
+                    {{ form_widget(reseauxForm.twitter) }}
+                </div>
+            </div>
+            <div class="row vertical-margin">
+                <div class="col-1 text-center">
+                    <img src="{{ asset('img/reseaux-sociaux/twitch.svg') }}" alt="Ma chaine twich" class="social-icon">
+                </div>
+                <div class="col-11">
+                    {{ form_row(reseauxForm.twitch) }}
+                </div>
+            </div>
+            <div class="row vertical-margin">
+                <input type="submit" class="btn btn-primary" value="Enregistrer">
+            </div>
+            {{ form_end(reseauxForm) }}
+        </div>
     </div>
 {% endblock %}
 
