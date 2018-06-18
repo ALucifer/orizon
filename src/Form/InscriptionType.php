@@ -22,15 +22,14 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('email', EmailType::class, ['label'=>'Insérez votre Email','required'=>'true', 'attr'=>['placeholder'=>'Email', 'class'=>'inputFields' ]])
-            ->add('Password', RepeatedType::class, array(
+        ->add('email', EmailType::class, ['required'=>'true', 'attr'=>['placeholder'=>'Votre email', 'class'=>'inputFields' ]])
+        ->add('Password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les password doivent être les mêmes.',
                 'required'=>true,
-                'options' => array('attr' =>['placeholder'=>'Votre Password', 'class'=>'inputFields'], 'invalid_message' => 'Vos mots de passes ne sont pas les mêmes, réessayer.' ),
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Répéter votre Password'),
-            ))    ->add('submit', SubmitType::class, ['label'=>'Validez']);
+                'options' => array('attr' =>['placeholder'=>'Votre mot de passe', 'class'=>'inputFields'], 'invalid_message' => 'Vos mots de passes ne sont pas les mêmes, réessayer.' ),
+            ))
+        ->add('submit', SubmitType::class, ['label'=>'Validez']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
